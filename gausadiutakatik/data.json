@@ -1,0 +1,27 @@
+[
+    {
+        "Nama Barang": "mie samyang",
+        "Jumlah Barang": 33,
+        "Harga Barang": 3000
+    },
+    {
+        "Nama Barang": "mie aceh",
+        "Jumlah Barang": 6,
+        "Harga Barang": 3000
+    },
+    {
+        "Nama Barang": "mie soto",
+        "Jumlah Barang": 40,
+        "Harga Barang": 2500
+    },
+    {
+        "Nama Barang": "mie seblak",
+        "Jumlah Barang": 30,
+        "Harga Barang": 3000
+    },
+    {
+        "Nama Barang": "mie kaldu",
+        "Jumlah Barang": 30,
+        "Harga Barang": 2500
+    }
+]
