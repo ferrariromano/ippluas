@@ -8,7 +8,6 @@ class TestInventoryManagement(unittest.TestCase):
         self.inventory = InventoryManagement()
         self.inventory.data = [{'Nama Barang': 'BarangTest', 'Jumlah Barang': 10, 'Harga Barang': 5000}]
 
-
     @patch('builtins.input', side_effect=['BarangTest', '10', '5000'])
     def test_restock_barang(self, mock_input):
         self.inventory.restock_barang()
@@ -34,12 +33,11 @@ class TestInventoryManagement(unittest.TestCase):
         final_stock = self.inventory.data[0]['Jumlah Barang']
         self.assertEqual(initial_stock - 1, final_stock)  # Pastikan jumlah barang berkurang sebanyak yang dibeli
 
-    @patch('builtins.input', side_effect=['5000'])
+    @patch('builtins.input', return_value='5000')
     def test_pembeli_transaksi(self, mock_input):
         self.inventory.total = 5000
         self.inventory.menu_pembeli()
-        # Menambahkan assert untuk memeriksa output transaksi
+        # Add assertions to check transaction output
 
-# Menjalankan test
 if __name__ == '__main__':
     unittest.main()
