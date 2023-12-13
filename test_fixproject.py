@@ -1,5 +1,7 @@
 import unittest
 from unittest.mock import patch
+from io import StringIO
+
 from fixproject import InventoryManagement
 
 class TestInventoryManagement(unittest.TestCase):
@@ -12,6 +14,13 @@ class TestInventoryManagement(unittest.TestCase):
     def test_restock_barang(self, mock_input):
         self.inventory.restock_barang()
         self.assertIn({'Nama Barang': 'BarangTest', 'Jumlah Barang': 10, 'Harga Barang': 5000}, self.inventory.data)
+
+
+    def test_show_admin(self):
+        expected_output = "WARMINDO DEPELE"  # This should be a unique part of the expected output
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            self.inventory.show_admin()
+            self.assertIn(expected_output, fake_out.getvalue())
 
     @patch('builtins.input', side_effect=['1'])
     def test_hapus_barang(self, mock_input):
