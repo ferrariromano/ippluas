@@ -1,7 +1,7 @@
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch,mock_open
 from io import StringIO
-
+import json
 from fixproject import InventoryManagement
 
 class TestInventoryManagement(unittest.TestCase):
@@ -9,6 +9,20 @@ class TestInventoryManagement(unittest.TestCase):
     def setUp(self):
         self.inventory = InventoryManagement()
         self.inventory.data = [{'Nama Barang': 'BarangTest', 'Jumlah Barang': 10, 'Harga Barang': 5000}]
+
+    def test_tulis_data_json(self):
+        self.inventory.data = [{'Nama Barang': 'BarangPertama', 'Jumlah Barang': 10, 'Harga Barang': 1000},
+                               {'Nama Barang': 'BarangKedua', 'Jumlah Barang': 8, 'Harga Barang': 5000},
+                               {'Nama Barang': 'BarangTiga', 'Jumlah Barang': 2, 'Harga Barang': 2000},]
+        self.inventory.tulis_data_json()
+        with open("data.json", 'r') as f:
+            saved_data = json.load(f)
+            self.assertEqual(saved_data, self.inventory.data)
+
+    @patch('builtins.open', new_callable=mock_open, read_data='[{"Nama Barang": "BarangPertama", "Jumlah Barang": 10, "Harga Barang": 1000}, {"Nama Barang": "BarangKedua", "Jumlah Barang": 8, "Harga Barang": 5000}, {"Nama Barang": "BarangKetiga", "Jumlah Barang": 2, "Harga Barang": 2000}]')
+    def test_baca_data_json(self, mock_open):
+        self.inventory.baca_data_json()
+        self.assertEqual(self.inventory.data, [{'Nama Barang': 'BarangPertama', 'Jumlah Barang': 10, 'Harga Barang': 1000}, {'Nama Barang': 'BarangKedua', 'Jumlah Barang': 8, 'Harga Barang': 5000},{'Nama Barang': 'BarangKetiga', 'Jumlah Barang': 2, 'Harga Barang': 2000}])
 
     @patch('builtins.input', side_effect=['BarangTest', '10', '5000'])
     def test_restock_barang(self, mock_input):

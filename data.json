@@ -1,12 +1,17 @@
 [
     {
-        "Nama Barang": "BarangTest",
+        "Nama Barang": "BarangPertama",
         "Jumlah Barang": 10,
+        "Harga Barang": 1000
+    },
+    {
+        "Nama Barang": "BarangKedua",
+        "Jumlah Barang": 8,
         "Harga Barang": 5000
     },
     {
-        "Nama Barang": "BarangTest",
-        "Jumlah Barang": 10,
-        "Harga Barang": 5000
+        "Nama Barang": "BarangTiga",
+        "Jumlah Barang": 2,
+        "Harga Barang": 2000
     }
 ]
